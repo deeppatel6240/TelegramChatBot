@@ -54,13 +54,6 @@ def important_Links(message):
                                       "Which one would you like to see 📂?")
 
 
-@bot.message_handler(commands=['github'])
-def Git_hub(message):
-    keyboard = telebot.types.InlineKeyboardMarkup()
-    keyboard.add(telebot.types.InlineKeyboardButton('Click Here', url='https://github.com/deeppatel6240'))
-    bot.send_message(message.chat.id, 'It is Github Profile of Deep', reply_markup=keyboard)
-
-
 # All Content types and handlers
 @bot.message_handler(content_types=['audio', 'video', 'document', 'photo'])
 def aud(message):
