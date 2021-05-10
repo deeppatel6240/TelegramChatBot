@@ -9,6 +9,7 @@ bot = telebot.TeleBot(bot_token)
 # All Commands
 user_name = 'deeppatel6240'
 
+
 @bot.message_handler(func=lambda message: message.text is not None and message.from_user.username != user_name)
 def check_username(message):
         bot.send_message(message.chat.id, "You can't use this bot")
@@ -51,6 +52,13 @@ def important_Links(message):
     bot.send_message(message.chat.id, "Hey Deep, this function of bot is designed for you to easily find HP and 4K wallpapers 😉 \n"
                                       "Example: Unplash, pinterest, wallpaperflare etc 😎\n"
                                       "Which one would you like to see 📂?")
+
+
+@bot.message_handler(commands=['github'])
+def Git_hub(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.add(telebot.types.InlineKeyboardButton('Click Here', url='https://github.com/deeppatel6240'))
+    bot.send_message(message.chat.id, 'It is Github Profile of Deep', reply_markup=keyboard)
 
 
 # All Content types and handlers
