@@ -12,8 +12,7 @@ user_name = 'deeppatel6240'
 
 @bot.message_handler(func=lambda message: message.text is not None and message.from_user.username != user_name)
 def check_username(message):
-        bot.send_message(message.chat.id, "You can't use this bot")
-
+    bot.send_message(message.chat.id, "You can't use this bot")
 
 
 @bot.message_handler(commands=['start'])
@@ -21,7 +20,6 @@ def send_welcome(message):
     bot.reply_to(message, "Hey Deep, What's up?")
     bot.send_message(message.chat.id, message.from_user.username)
     bot.send_message(message.chat.id, "It it You?")
-
 
 
 @bot.message_handler(commands=['help'])
@@ -35,23 +33,26 @@ def help(message):
 
 @bot.message_handler(commands=['docs_help'])
 def help(message):
-    bot.send_message(message.chat.id, "Hey Deep, this function of bot is designed for you to easily find your documents 😉 \n"
-                                      "I have all your important documents 😎\n"
-                                      "Which one would you like to see 📂?")
+    bot.send_message(message.chat.id,
+                     "Hey Deep, this function of bot is designed for you to easily find your documents 😉 \n"
+                     "I have all your important documents 😎\n"
+                     "Which one would you like to see 📂?")
 
 
 @bot.message_handler(commands=['imp_links'])
 def important_Links(message):
-    bot.send_message(message.chat.id, "Hey Deep, this function of bot is designed for you to easily find important links 😉 \n"
-                                      "Example: Github, LinkedIn, Amazon, Lanquage Docs etc 😎\n"
-                                      "Which one would you like to see 📂?")
+    bot.send_message(message.chat.id,
+                     "Hey Deep, this function of bot is designed for you to easily find important links 😉 \n"
+                     "Example: Github, LinkedIn, Amazon, Lanquage Docs etc 😎\n"
+                     "Which one would you like to see 📂?")
 
 
 @bot.message_handler(commands=['wallpapers'])
 def important_Links(message):
-    bot.send_message(message.chat.id, "Hey Deep, this function of bot is designed for you to easily find HP and 4K wallpapers 😉 \n"
-                                      "Example: Unplash, pinterest, wallpaperflare etc 😎\n"
-                                      "Which one would you like to see 📂?")
+    bot.send_message(message.chat.id,
+                     "Hey Deep, this function of bot is designed for you to easily find HP and 4K wallpapers 😉 \n"
+                     "Example: Unplash, pinterest, wallpaperflare etc 😎\n"
+                     "Which one would you like to see 📂?")
 
 
 # All Content types and handlers
@@ -61,7 +62,7 @@ def aud(message):
                           'Type /help command to show the available format')
 
 
-#functions
+# functions
 @bot.message_handler(func=lambda message: message.from_user.username)
 def Is_it_you(message):
     # user_name = 'deeppatel6240'
@@ -123,7 +124,5 @@ def document(message):
     bot.send_message(message.chat.id, text="This is your message id :")
     bot.reply_to(message, text=message.message_id, parse_mode='MarkDown')
     # bot.send_message(message.chat.id, msg_date, parse_mode='MarkDown')  '''
-
-
 
 bot.polling(none_stop=True)

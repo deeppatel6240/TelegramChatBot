@@ -1,1 +1,1 @@
-web: python Docs.py
+worker: python Docs.py
