@@ -18,8 +18,8 @@ def check_username(message):
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.reply_to(message, "Hey Deep, What's up?")
-    bot.send_message(message.chat.id, message.from_user.username)
-    bot.send_message(message.chat.id, "It it You?")
+    # bot.send_message(message.chat.id, message.from_user.username)
+    # bot.send_message(message.chat.id, "It it You?")
 
 
 @bot.message_handler(commands=['help'])
@@ -63,13 +63,18 @@ def aud(message):
 
 
 # functions
-@bot.message_handler(func=lambda message: message.from_user.username)
-def Is_it_you(message):
-    # user_name = 'deeppatel6240'
-    if message.text.lower() == user_name:
-        bot.reply_to(message, "Well then let's begin 😎")
-    else:
-        bot.send_message(message.chat.id, "Sorry! I wasn't able to recognize what you sent.Please try again")
+@bot.message_handler(
+    func=lambda message: message.text is not None and 'good' in message.text.lower()
+                         or message.text is not None and 'fine' in message.text.lower())
+def How_are_you(message):
+    bot.reply_to(message,
+                 'Okay ' + message.from_user.first_name + '. How can i help you?🙂')
+    bot.send_message(message.chat.id, 'If you do not know my features then write /help in message box')
+
+
+@bot.message_handler(content_types=['text'])
+def Checking_for_right_msg(message):
+    bot.send_message(message.chat.id, "Sorry! I wasn't able to recognize what you sent.Please try again")
 
 
 ''' # Content_types
