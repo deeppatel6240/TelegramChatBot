@@ -1,9 +1,9 @@
 import random
 from _warnings import filters
-
+import requests
 import telebot
 
-bot_token = "1854520305:AAHAa_u5MedduwWiZRtUPWI06ZrpBTRuZBs"
+bot_token = "1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI"
 bot = telebot.TeleBot(bot_token)
 
 # All Commands
@@ -63,6 +63,7 @@ def aud(message):
 
 
 # functions
+
 @bot.message_handler(
     func=lambda message: message.text is not None and 'good' in message.text.lower()
                          or message.text is not None and 'fine' in message.text.lower())
@@ -72,62 +73,97 @@ def How_are_you(message):
     bot.send_message(message.chat.id, 'If you do not know my features then write /help in message box')
 
 
+# docs of deep
+@bot.message_handler(func=lambda message: message.text is not None and '10' in message.text.lower())
+def picture(message):
+    bot.send_message(message.chat.id, 'My Lord, Here is mark sheet of your 10th grade')
+    bot.send_photo(message.chat.id, 'https://i.ibb.co/02Dz8Bw/2828842.jpg', caption="10th Result!")
+    '''
+        For full size image 
+            1. sent the original size picture to your bot
+            2. use get method for finding file_id of the image (https://api.telegram.org/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/getUpdates)
+            3. then use this command to find file_path
+                (bot_token = 1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI)
+                (file_id = BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ)
+                (https://api.telegram.org/token_of_your_bot/getfile?file_id=BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ)
+            4. By using above url you can find file_path which is below
+                (https://api.telegram.org/file/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/documents/file_0.jpg)
+            5. now you can download image in original size.
+    '''
+    # file_info = bot.get_file('BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ')
+    # file_path = 'documents/file_0.jpg'
+    # file = requests.get('https://api.telegram.org/file/bot/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI'.format(bot_token, file_info.file_path))
+    # bot.send_message(message.chat.id, file)
+
+
+# wallpapers links
+@bot.message_handler(func=lambda message: message.text is not None and 'CAR' in message.text.upper())
+def car(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    # unsplash
+    bot.reply_to(message,
+                 "UNSPLASH\n"
+                 "For more Information visit:<a href='https://unsplash.com/s/photos/car'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # pixels
+    bot.reply_to(message,
+                 "PIXELS\n"
+                 "For more Information visit:<a href='https://www.pexels.com/search/car'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # wallpapercraft
+    bot.reply_to(message,
+                 "WALLPAPER CRAFT\n"
+                 "For more Information visit:<a href='https://wallpaperscraft.com/catalog/cars/3840x2400'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # wallpaper access
+    bot.reply_to(message,
+                 "WALLPAPER ACCESS\n"
+                 "For more Information visit:<a href='https://wallpaperaccess.com/search?q=car'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+
+# nature
+@bot.message_handler(func=lambda message: message.text is not None and 'NATURE' in message.text.upper())
+def nature(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    # unsplash
+    bot.reply_to(message,
+                 "UNSPLASH\n"
+                 "For more Information visit:<a href='https://unsplash.com/s/photos/4k-landscape'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # wallpaper cave
+    bot.reply_to(message,
+                 "Wallpaper Cave\n"
+                 "For more Information visit:<a href='https://wallpapercave.com/nature-4k-wallpapers'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # wallpaper craft
+    bot.reply_to(message,
+                 "WALLPAPER ACCESS\n"
+                 "For more Information visit:<a href='https://wallpaperscraft.com/catalog/nature/3840x2400'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # hdq walls
+    bot.reply_to(message,
+                 "HDq walls\n"
+                 "For more Information visit:<a href='https://hdqwalls.com/category/nature-wallpapers'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+    # wallpaper flare
+    bot.reply_to(message,
+                 "Wallpaper Flare\n"
+                 "For more Information visit:<a href='https://www.wallpaperflare.com/search?wallpaper=beauty+In+Nature'>Click Here</a>",
+                 parse_mode="HTML", reply_markup=keyboard)
+
+
+# Unrecognized message
 @bot.message_handler(content_types=['text'])
 def Checking_for_right_msg(message):
     bot.send_message(message.chat.id, "Sorry! I wasn't able to recognize what you sent.Please try again")
 
-
-''' # Content_types
-
-# Audio
-@bot.message_handler(content_types=['audio'])
-def aud(message):
-    bot.reply_to(message, 'its an audio')
-    bot.send_message(message.chat.id, "Please Send Again")
-
-
-# link
-@bot.message_handler(commands=['github'])
-def Git_hub(message):
-    keyboard = telebot.types.InlineKeyboardMarkup()
-    keyboard.add(telebot.types.InlineKeyboardButton('Click Here', url='https://github.com/deeppatel6240'))
-    bot.send_message(message.chat.id, 'It is Github Profile of Deep', reply_markup=keyboard)
-
-
-@bot.message_handler(func=lambda message: message.text is not None and 'DARK' in message.text.upper())
-def dia(message):
-    bot.reply_to(message,
-                 "Dark is a German science fiction thriller streaming television series co-created by Baran bo Odar and Jantje Friese."
-                 "[5][6][7] It ran for three seasons from 2017 to 2020. In the aftermath of a child's disappearance, Dark follows "
-                 "characters from the fictional German town of Winden as they pursue the truth. They follow connections between four "
-                 "estranged families to unravel a sinister time travel conspiracy which spans several generations. "
-                 "The series explores the existential implications of time, and its effect on human nature."
-                 "\nFor more information visit:<a href='https://en.wikipedia.org/wiki/Dark_(TV_series)'>Wiki</a>",
-                 parse_mode='HTML')
-
-
-# text
-@bot.message_handler(content_types=['text'])
-def un_rec(message):
-    bot.send_message(message.chat.id, "Sorry! I wasn't able to recognize what you sent.Please try again")
-
-
-# photo
-@bot.message_handler(content_types=['photo'])
-def picture(message):
-    bot.reply_to(message, 'it is photo')
-    pic = ['0.jpg','1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg']
-    # reply_pic = open('Resources/Photo/' + random.choice(pic), 'r')
-    bot.send_photo(message.chat.id, photo=open('Resources/Photo/' + random.choice(pic), 'rb'))
-
-
-#document and message method
-@bot.message_handler(content_types= ['document'])
-def document(message):
-    bot.reply_to(message, "it is pdf file")
-
-    bot.send_message(message.chat.id, text="This is your message id :")
-    bot.reply_to(message, text=message.message_id, parse_mode='MarkDown')
-    # bot.send_message(message.chat.id, msg_date, parse_mode='MarkDown')  '''
 
 bot.polling(none_stop=True)
