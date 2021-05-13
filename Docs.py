@@ -1,6 +1,6 @@
 import random
+import time
 from _warnings import filters
-import requests
 import telebot
 
 bot_token = "1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI"
@@ -36,7 +36,8 @@ def help(message):
     bot.send_message(message.chat.id,
                      "Hey Deep, this function of bot is designed for you to easily find your documents 😉 \n"
                      "I have all your important documents 😎\n"
-                     "Which one would you like to see 📂?")
+                     "Which one would you like to see 📂?\n"
+                     "10th result, 12th result, BE All Semesters, Adharcard etc.")
 
 
 @bot.message_handler(commands=['imp_links'])
@@ -44,7 +45,7 @@ def important_Links(message):
     bot.send_message(message.chat.id,
                      "Hey Deep, this function of bot is designed for you to easily find important links 😉 \n"
                      "Example: Github, LinkedIn, Amazon, Lanquage Docs etc 😎\n"
-                     "Which one would you like to see 📂?")
+                     "Which one would you like to see 📂?\n")
 
 
 @bot.message_handler(commands=['wallpapers'])
@@ -77,7 +78,21 @@ def How_are_you(message):
 @bot.message_handler(func=lambda message: message.text is not None and '10' in message.text.lower())
 def picture(message):
     bot.send_message(message.chat.id, 'My Lord, Here is mark sheet of your 10th grade')
-    bot.send_photo(message.chat.id, 'https://i.ibb.co/02Dz8Bw/2828842.jpg', caption="10th Result!")
+    bot.send_photo(message.chat.id, 'https://i.ibb.co/bJ4jKxm/Deep-10th-Marksheet.jpg', caption="10th Result!")
+
+
+@bot.message_handler(func=lambda message: message.text is not None and '12' in message.text.lower())
+def picture(message):
+    bot.send_message(message.chat.id, 'My Lord, Here is mark sheet of your 12th grade')
+    bot.send_photo(message.chat.id, 'https://i.ibb.co/2M2fCCY/Deep-12th-Marksheet.jpg', caption="12th Result!")
+
+
+@bot.message_handler(func=lambda message: message.text is not None and 'adhar' in message.text.lower())
+def picture(message):
+    bot.send_message(message.chat.id, 'My Lord, Here is your AdharCard')
+    bot.send_photo(message.chat.id, 'https://i.ibb.co/JcCFcYB/pdfresizer-com-pdf-crop-1.jpg', caption="Adharcard")
+
+
     '''
         For full size image 
             1. sent the original size picture to your bot
@@ -90,10 +105,6 @@ def picture(message):
                 (https://api.telegram.org/file/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/documents/file_0.jpg)
             5. now you can download image in original size.
     '''
-    # file_info = bot.get_file('BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ')
-    # file_path = 'documents/file_0.jpg'
-    # file = requests.get('https://api.telegram.org/file/bot/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI'.format(bot_token, file_info.file_path))
-    # bot.send_message(message.chat.id, file)
 
 
 # wallpapers links
@@ -167,3 +178,4 @@ def Checking_for_right_msg(message):
 
 
 bot.polling(none_stop=True)
+
