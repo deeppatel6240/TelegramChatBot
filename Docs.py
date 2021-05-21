@@ -57,9 +57,9 @@ def important_Links(message):
 
 
 # All Content types and handlers
-@bot.message_handler(content_types=['audio', 'video', 'document', 'photo'])
+@bot.message_handler(content_types=['audio', 'video', 'photo'])
 def aud(message):
-    bot.reply_to(message, 'oops, Something went Wrong. Seems like you sent message in differnet format.\n'
+    bot.reply_to(message, 'oops, Something went Wrong. Seems like you sent message in different format.\n'
                           'Type /help command to show the available format')
 
 
@@ -92,19 +92,24 @@ def picture(message):
     bot.send_message(message.chat.id, 'My Lord, Here is your AdharCard')
     bot.send_photo(message.chat.id, 'https://i.ibb.co/JcCFcYB/pdfresizer-com-pdf-crop-1.jpg', caption="Adharcard")
 
-
     '''
         For full size image 
             1. sent the original size picture to your bot
-            2. use get method for finding file_id of the image (https://api.telegram.org/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/getUpdates)
+            2. use get method for finding file_id of the image (https://api.telegram.org/bot1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/getUpdates)
             3. then use this command to find file_path
                 (bot_token = 1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI)
                 (file_id = BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ)
                 (https://api.telegram.org/token_of_your_bot/getfile?file_id=BQACAgUAAxkBAAIDgmCbjlKRA9pWKJi3vJlS5RqBwgsJAAJKAgACm8zYVAE8YlSeYU0oHwQ)
             4. By using above url you can find file_path which is below
-                (https://api.telegram.org/file/1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/documents/file_0.jpg)
+                (https://api.telegram.org/file/bot1885957296:AAF1CNpOeSSBwD3q3XlwdQ7ovkI6qN03CwI/documents/file_0.jpg)
             5. now you can download image in original size.
     '''
+
+
+@bot.message_handler(func=lambda message: message.text is not None and 'resume' in message.text.lower())
+def resume_pdf(message):
+    # bot.send_document(message.chat.id, open('E:\Placement Preparation\Resume\Latest\Deep_Sherathiya_Resume.pdf', 'rb'))
+    bot.send_message(message.chat.id, 'https://drive.google.com/file/d/1TexPW9AML-8HkVNqSGzf4oD4-5PlwoKf/view?usp=sharing')
 
 
 # wallpapers links
