@@ -105,11 +105,11 @@ def picture(message):
             5. now you can download image in original size.
     '''
 
-
-@bot.message_handler(func=lambda message: message.text is not None and 'resume' in message.text.lower())
-def resume_pdf(message):
-    # bot.send_document(message.chat.id, open('E:\Placement Preparation\Resume\Latest\Deep_Sherathiya_Resume.pdf', 'rb'))
-    bot.send_message(message.chat.id, 'https://drive.google.com/file/d/1TexPW9AML-8HkVNqSGzf4oD4-5PlwoKf/view?usp=sharing')
+# 
+# @bot.message_handler(func=lambda message: message.text is not None and 'resume' in message.text.lower())
+# def resume_pdf(message):
+#     # bot.send_document(message.chat.id, open('E:\Placement Preparation\Resume\Latest\Deep_Sherathiya_Resume.pdf', 'rb'))
+#     bot.send_message(message.chat.id, 'https://drive.google.com/file/d/1TexPW9AML-8HkVNqSGzf4oD4-5PlwoKf/view?usp=sharing')
 
 
 # wallpapers links
